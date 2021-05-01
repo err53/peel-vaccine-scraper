@@ -60,11 +60,12 @@ diff: ${
         },
         body: JSON.stringify(webhookParams),
       });
+
+      // merge innerHtml into Firebase
+      await doc.ref.update({
+        prevInnerHTML: innerHTML,
+      });
     }
-    // merge innerHtml into Firebase
-    await doc.ref.update({
-      prevInnerHTML: innerHTML,
-    });
   });
 };
 
