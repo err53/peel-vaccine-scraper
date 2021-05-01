@@ -17,6 +17,8 @@
   },
   "homepage": "https://github.com/jhthenerd/peel-vaccine-scraper#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
+    "node-fetch": "^2.6.1",
     "puppeteer": "^9.0.0"
   }
 }
