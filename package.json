@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/jhthenerd/peel-vaccine-scraper/issues"
   },
-  "homepage": "https://github.com/jhthenerd/peel-vaccine-scraper#readme"
+  "homepage": "https://github.com/jhthenerd/peel-vaccine-scraper#readme",
+  "dependencies": {
+    "puppeteer": "^9.0.0"
+  }
 }
