@@ -30,13 +30,6 @@ const scrape = async () => {
     if (innerHTML !== doc.data().prevInnerHTML) {
       // there is a difference
       console.log(`diff detected for ${doc.id}`);
-      console.log(typeof innerHTML);
-      console.log(typeof doc.data().prevInnerHTML);
-      console.log(
-        doc.data().prevInnerHTML != null
-          ? diff.createPatch("innerHTML", doc.data().prevInnerHTML, innerHTML)
-          : "prevInnerHTML is null or undefined"
-      );
       const discordURL = functions.config().discord.url;
       const webhookParams = {
         content: `${doc.data().name}: Change Detected! <@&837857458848137300> 
