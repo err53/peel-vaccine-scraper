@@ -19,6 +19,9 @@ jobs:
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-
-      - run: npm ci && node .
+      - run: npm ci
+      - env:
+          DISCORD_WEBHOOK_URL: ${{secrets.DISCORD_WEBHOOK_URL}}
+        run: node .
       - uses: EndBug/add-and-commit@v7
 
