@@ -50,7 +50,7 @@ const main = async () => {
         console.log("diff detected!")
         const discordURL = process.env.DISCORD_WEBHOOK_URL;
         const webhookParams = {
-          content: `Change in the 18+ Vaccination Page Detected <@&837857458848137300> \nhttps://github.com/jhthenerd/peel-vaccine-scraper/commits/main`,
+          content: `Change in the 18+ Vaccination Page Detected <@&837857458848137300> \nhttps://www.peelregion.ca/coronavirus/vaccine/book-appointment/#18\nhttps://github.com/jhthenerd/peel-vaccine-scraper/commits/main`,
           allowed_mentions: {
             parse: ['roles'],
           },
