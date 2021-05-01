@@ -7,5 +7,8 @@
 Scrapes vaccine availability for those in hotspot areas from the Peel site.
 
 ## Built With
-- Puppeteer
 - Firebase
+- cheerio
+- node-fetch
+- diff
+- Pastebin
