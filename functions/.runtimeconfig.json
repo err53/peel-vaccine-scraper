@@ -1,3 +1,6 @@
 {
-    "isDebug": true
+    "isDebug": true,
+    "discord": {
+        "url": "https://discord.com/api/webhooks/837920376440094740/e3SmCSC8_CL09iY3qM-K2KNP_vA6i9ovCimx1Ujjc9Qy7QjLV5_0UfrjrZazTLn1uJhn"
+    }
 }
