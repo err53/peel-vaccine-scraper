@@ -2,6 +2,8 @@ const functions = require("firebase-functions");
 const cheerio = require("cheerio");
 const fetch = require("node-fetch");
 const admin = require("firebase-admin");
+const diff = require("diff");
+const PasteClient = require("pastebin-api").default;
 
 // // Create and Deploy Your First Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
@@ -12,6 +14,8 @@ const admin = require("firebase-admin");
 // });
 
 admin.initializeApp();
+
+const client = new PasteClient(functions.config().pastebin.key);
 
 const scrape = async () => {
   const sitesRef = admin.firestore().collection("sites");
@@ -26,11 +30,32 @@ const scrape = async () => {
     if (innerHTML !== doc.data().prevInnerHTML) {
       // there is a difference
       console.log(`diff detected for ${doc.id}`);
+      console.log(typeof innerHTML);
+      console.log(typeof doc.data().prevInnerHTML);
+      console.log(
+        doc.data().prevInnerHTML != null
+          ? diff.createPatch("innerHTML", doc.data().prevInnerHTML, innerHTML)
+          : "prevInnerHTML is null or undefined"
+      );
       const discordURL = functions.config().discord.url;
       const webhookParams = {
-        content: `${
-          doc.data().name
-        }: Change Detected! <@&837857458848137300> \n${doc.data().url}`,
+        content: `${doc.data().name}: Change Detected! <@&837857458848137300> 
+url: ${doc.data().url}
+diff: ${
+          doc.data().prevInnerHTML != null
+            ? await client.createPaste({
+                code: diff.createPatch(
+                  doc.data().url,
+                  doc.data().prevInnerHTML,
+                  innerHTML
+                ),
+                format: "diff",
+                name: `Diff of ${doc.data().name}`,
+                publicity: 1,
+              })
+            : "prevInnerHTML is null or undefined"
+        }
+`,
         allowed_mentions: {
           parse: ["roles"],
         },
